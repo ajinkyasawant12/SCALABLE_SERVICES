@@ -1,0 +1,36 @@
+version: '3'
+services:
+  user-service:
+    build: ./user-service
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongo-user:27017/userdb
+
+  matchmaking-service:
+    build: ./matchmaking-service
+    ports:
+      - "5001:5001"
+    environment:
+      - MONGO_URI=mongodb://mongo-match:27017/matchdb
+      - USER_SERVICE_URL=http://user-service:5000/users
+
+  mongo-user:
+    image: mongo
+    container_name: mongo-user
+    ports:
+      - "27017:27017"
+    volumes:
+      - user-db:/data/db
+
+  mongo-match:
+    image: mongo
+    container_name: mongo-match
+    ports:
+      - "27018:27017"
+    volumes:
+      - match-db:/data/db
+
+volumes:
+  user-db:
+  match-db:
