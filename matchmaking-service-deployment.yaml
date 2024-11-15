@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matchmaking-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: matchmaking-service
+  template:
+    metadata:
+      labels:
+        app: matchmaking-service
+    spec:
+      containers:
+      - name: matchmaking-service
+        image: matchmaking-service:latest
+        ports:
+        - containerPort: 5001
+        env:
+        - name: USER_SERVICE_URL
+          value: "http://user-service:80/users"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: matchmaking-service
+spec:
+  selector:
+    app: matchmaking-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5001
+  type: NodePort
