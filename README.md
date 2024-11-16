@@ -75,6 +75,7 @@ This document outlines the design of a scalable microservices architecture for a
 |  User Database |       |  Game Database |       | Match Database |       | Leaderboard DB |
 +----------------+       +----------------+       +----------------+       +----------------+
 
+
 ## 5. Example of Service Collaboration
 
 ### CreateMatch Flow
@@ -90,6 +91,46 @@ This document outlines the design of a scalable microservices architecture for a
 
 This design ensures that each service is responsible for a specific business capability, promoting scalability and maintainability. Each service can be independently developed, deployed, and scaled based on demand.
 
-## 6. Additional Resources
+## 6. Commands 
+Build Docker Images: 
+       docker build -t user-service. 
+       docker build -t matchmaking-service. 
+
+Run Docker Containers: 
+
+       docker run -d -p 5000:5000 --name user-service user-service 
+       docker run -d -p 5001:5001 --name matchmaking-service matchmaking-service 
+
+Start Minikube: 
+
+       minikube start 
+       eval $(minikube docker-env) 
+
+Build Docker Images for Minikube: 
+
+       docker build -t user-service. 
+       docker build -t matchmaking-service. 
+
+Create Kubernetes Deployment and Service YAML Files: 
+
+       user-service-deployment.yaml 
+       matchmaking-service-deployment.yaml 
+
+Deploy to Kubernetes: 
+
+       kubectl apply -f user-service-deployment.yaml 
+       kubectl apply -f matchmaking-service-deployment.yaml 
+
+Access Kubernetes Dashboard: 
+
+       minikube dashboard 
+
+Verify the Deployments: 
+
+       Access the services using the Minikube IP and NodePort 
+       http://<minikube_ip>:<node_port>/users. 
+       http://<minikube_ip>:<node_port>/matches 
+
+## 7. Additional Resources
 
 For more group details, refer to the [Group Assignment Document](https://wilpbitspilaniacin0.sharepoint.com/:x:/r/sites/ScalableServicesS1-24_CCZG583/_layouts/15/Doc.aspx?sourcedoc=%7BB60589BB-4D2B-463F-B963-21106FF06D8F%7D&file=Group_Assignment_S1-24_CCZG583.xlsx&action=default&mobileredirect=true&DefaultItemOpen=1&ct=1728233533710&wdOrigin=OFFICECOM-WEB.START.REC&cid=8f4c3a21-0839-4193-85dd-fa44bdec06fa&wdPreviousSessionSrc=HarmonyWeb&wdPreviousSession=eea4f79e-4c8d-487b-97d8-65a64a4a870d).
