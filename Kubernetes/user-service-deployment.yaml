@@ -14,9 +14,12 @@ spec:
     spec:
       containers:
       - name: user-service
-        image: user-service:latest
+        image: docker.io/ajinkya924/scalable_services-user-service:latest 
         ports:
         - containerPort: 5000
+        env:
+        - name: MONGO_URI
+          value: "mongodb://mongo-user:27017/userdb"
 ---
 apiVersion: v1
 kind: Service

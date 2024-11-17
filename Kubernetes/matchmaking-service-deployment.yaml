@@ -14,10 +14,12 @@ spec:
     spec:
       containers:
       - name: matchmaking-service
-        image: matchmaking-service:latest
+        image: docker.io/ajinkya924/scalable_services-matchmaking-service:latest 
         ports:
         - containerPort: 5001
         env:
+        - name: MONGO_URI
+          value: "mongodb://mongo-match:27017/matchdb"
         - name: USER_SERVICE_URL
           value: "http://user-service:80/users"
 ---

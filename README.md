@@ -93,8 +93,8 @@ This design ensures that each service is responsible for a specific business cap
 
 ## 6. Commands 
 Build Docker Images: 
-       docker build -t user-service. 
-       docker build -t matchmaking-service. 
+       docker build -t user-service .
+       docker build -t matchmaking-service .
 
 Run Docker Containers: 
 
@@ -108,8 +108,8 @@ Start Minikube:
 
 Build Docker Images for Minikube: 
 
-       docker build -t user-service. 
-       docker build -t matchmaking-service. 
+       docker build -t user-service . 
+       docker build -t matchmaking-service . 
 
 Create Kubernetes Deployment and Service YAML Files: 
 
@@ -128,7 +128,7 @@ Access Kubernetes Dashboard:
 Verify the Deployments: 
 
        Access the services using the Minikube IP and NodePort 
-       http://<minikube_ip>:<node_port>/users. 
+       http://<minikube_ip>:<node_port>/users
        http://<minikube_ip>:<node_port>/matches 
 
 ## 7. Additional Resources

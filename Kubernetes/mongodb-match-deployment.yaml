@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-match
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo-match
+  template:
+    metadata:
+      labels:
+        app: mongo-match
+    spec:
+      containers:
+      - name: mongo-match
+        image: mongo:latest
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+        - name: mongo-match-storage
+          mountPath: /data/db
+      volumes:
+      - name: mongo-match-storage
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-match
+spec:
+  selector:
+    app: mongo-match
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+  type: ClusterIP

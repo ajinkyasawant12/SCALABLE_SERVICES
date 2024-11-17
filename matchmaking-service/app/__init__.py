@@ -8,6 +8,6 @@ def create_app():
     app.config.from_object(Config)
 
     init_db(app)
-    app.register_blueprint(match_bp, url_prefix='/matches')
+    app.register_blueprint(match_bp, url_prefix='/')
 
     return app
